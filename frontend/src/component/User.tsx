@@ -64,6 +64,9 @@ interface UserLoggedinProps {
 export const UserLoggedin: React.FC<UserLoggedinProps> = ({ code, name }): any => {
     const quizid = code;
     const [S, setS] = useState<null | any>(null);
+    const [currentState, setCurrentState] = useState("not_started");
+    const [currentQuestion, setCurrentQuestion] = useState<any>(null);
+    const [userId, setUserId] = useState("");
 
     useEffect(() => {
 
@@ -72,8 +75,28 @@ export const UserLoggedin: React.FC<UserLoggedinProps> = ({ code, name }): any =
         setS(socket);
         socket.emit('join', { quizid, name });
 
-        console.log(quizid, name)
+        console.log(quizid, name);
+
+        socket.on("init", ({ userId, state }) => {
+            setUserId(userId);
+
+
+
+            if (state.problem) {
+                setCurrentQuestion(state.problem);
+            }
+
+            setCurrentState(state.type);
+        });
 
     }, []);
+    if (currentState === "not_started") {
+        return <div>
+            This quiz hasnt started yet
+        </div>
+    }
+    if (currentState === "question") {
+        return
+    }
 
 }

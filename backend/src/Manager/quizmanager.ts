@@ -12,6 +12,13 @@ export class quizmanger {
     public getquiz(id: string) {
         return this.quizes.find(x => x.quizid == id) ?? null;
     }
+    public Start(quizid: string) {
+        const quiz = this.getquiz(quizid);
+        if (!quiz) {
+            return;
+        }
+        quiz.start();
+    }
     public addquiz(quizid: string) {
         if (this.getquiz(quizid)) {
             return;
@@ -43,6 +50,15 @@ export class quizmanger {
             ...problem, problemid: globalProblemId++, startime: new Date().getTime(), submission: [],
         })
         console.log(quiz?.problems);
+    };
+    public addUser(quizid: string, name: string) {
+        const quiz = this.getquiz(quizid);
+        if (!quiz) {
+            console.log("quiz not found");
+
+        }
+        quiz?.adduser(name);
+
     }
 
 

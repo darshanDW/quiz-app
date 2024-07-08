@@ -1,5 +1,4 @@
 import { useState } from "react";
-
 const CreateP = ({ socket, quiz }: { socket: any; quiz: string; }) => {
     const [title, setTitle] = useState("");
     const [description, setDescription] = useState("");
@@ -36,7 +35,6 @@ const CreateP = ({ socket, quiz }: { socket: any; quiz: string; }) => {
             ]);
         }
     };
-
     return (
         <div>
             { }
@@ -69,6 +67,8 @@ const CreateP = ({ socket, quiz }: { socket: any; quiz: string; }) => {
             <br />
 
             <button onClick={handleAddProblem}>Add problem</button>
+
+
         </div>
     );
 };

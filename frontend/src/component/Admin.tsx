@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { io, Socket } from "socket.io-client";
 import CreateP from "./CreateP";
+import { Control } from "./Contriol";
 function Admin() {
     const [quiz, setQuiz] = useState("");
     const [a, seta] = useState("");
@@ -50,6 +51,7 @@ function Admin() {
     return (
         <>
             <CreateP quiz={quiz} socket={S} />
+            <Control socket={S} quizid={quiz} />
         </>
     );
 }
