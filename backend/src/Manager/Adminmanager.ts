@@ -34,8 +34,13 @@ export class Adminmanager {
         socket.on('join', (data) => {
             console.log("user join")
             if (!data) { return; }
-            this.quizmanage.addUser(data.quizid, data.name);
+            const userId = this.quizmanage.addUser(data.quizid, data.name);
+            socket.emit("init", {
+                userId,
+                state: 'question'
+            });
             socket.join(data.quizid);
+
         })
     }
 

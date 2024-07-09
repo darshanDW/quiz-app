@@ -69,6 +69,7 @@ export class quiz {
 
         this.users.push({ userid: id, name, points: 0 });
         console.log(this.users);
+        return id;
     }
     public start() {
         this.hasStarted = true;
@@ -76,14 +77,20 @@ export class quiz {
             this.setactiveproblem(this.problems[0])
         }
     }
+
     private setactiveproblem(problem: problem) {
         console.log("problem set");
         this.currentState = 'question';
         problem.startime = new Date().getTime();
         problem.submission = [];
         IoManager.getIo().to(this.quizid).emit("problem", {
-            problem
-        })
+            title: problem.title,
+            description: problem.desciption,
+            image: problem.image,
+            problemid: problem.problemid,
+            options: problem.options
+        }),
+            console.log("question send")
     }
 
 

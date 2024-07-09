@@ -1,16 +1,21 @@
 import { useState } from "react";
 import { Socket } from "socket.io-client";
-
-export const quiz = (socket: Socket, quizid: string, userid: string, data: {
-    title: string;
-    description: string;
-    image?: string;
-    problemid: number;
-    options: [{
-        id: number;
-        title: number
-    }]
-}) => {
+interface QuizpProps {
+    socket: Socket | null;
+    quizid: string;
+    userid: string;
+    data: {
+        title: string;
+        description: string;
+        image?: string;
+        problemid: number;
+        options: {
+            id: number;
+            title: string
+        }[]
+    };
+}
+export const Quizp: React.FC<QuizpProps> = ({ socket, quizid, userid, data }) => {
     const [submit, setsubmit] = useState(false);
     const [answer, setAnswer] = useState(undefined)
     return (
@@ -24,7 +29,7 @@ export const quiz = (socket: Socket, quizid: string, userid: string, data: {
                 <div key={option.id}>
                     <input type="radio" checked={option.id === answer} onChange={() => setAnswer(option.id)} />
                     Option {option.id}
-                    <input type="text" value={option.title} />
+                    <input type="text" readOnly={option.title} />
                     <br />
                     <br />
                 </div>
@@ -32,7 +37,10 @@ export const quiz = (socket: Socket, quizid: string, userid: string, data: {
 
 
             };
-            <button onClick={() => { console.log("submit") }}>submit</button>
+            <button onClick={() => {
+                console.log("submit");
+                setsubmit(true);
+            }}>submit</button>
         </div>
     )
 

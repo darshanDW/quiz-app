@@ -1,9 +1,9 @@
 
 import { useEffect, useState } from "react";
 import { Socket, io } from "socket.io-client";
-
-
+import { Quizp } from "./Quiz";
 const User = () => {
+
     const [name, setName] = useState("");
     const [submitted, setSubmitted] = useState(false);
     const [code, setCode] = useState("");
@@ -63,11 +63,20 @@ interface UserLoggedinProps {
 
 export const UserLoggedin: React.FC<UserLoggedinProps> = ({ code, name }): any => {
     const quizid = code;
-    const [S, setS] = useState<null | any>(null);
+    const [S, setS] = useState<Socket | null>(null);
     const [currentState, setCurrentState] = useState("not_started");
-    const [currentQuestion, setCurrentQuestion] = useState<any>(null);
+    const [currentQuestion, setCurrentQuestion] = useState<data>(null);
     const [userId, setUserId] = useState("");
-
+    type data = {
+        title: string;
+        description: string;
+        image?: string;
+        problemid: number;
+        options: {
+            id: number;
+            title: string
+        }[]
+    } | null;
     useEffect(() => {
 
 
@@ -82,12 +91,18 @@ export const UserLoggedin: React.FC<UserLoggedinProps> = ({ code, name }): any =
 
 
 
-            if (state.problem) {
+            if (state == 'question') {
                 setCurrentQuestion(state.problem);
             }
 
             setCurrentState(state.type);
         });
+
+        socket.on("problem", (data: data) => {
+            setCurrentState("question");
+            setCurrentQuestion(data);
+            console.log(data);
+        })
 
     }, []);
     if (currentState === "not_started") {
@@ -96,7 +111,6 @@ export const UserLoggedin: React.FC<UserLoggedinProps> = ({ code, name }): any =
         </div>
     }
     if (currentState === "question") {
-        return
+        return <Quizp socket={S} quizid={quizid} userid={userId} data={currentQuestion} />
     }
-
 }
