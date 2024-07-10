@@ -18,6 +18,7 @@ export class quizmanger {
             return;
         }
         quiz.start();
+        console.log("started")
     }
     public addquiz(quizid: string) {
         if (this.getquiz(quizid)) {
@@ -31,7 +32,7 @@ export class quizmanger {
     public addProblem(quizid: string, problem: {
 
         title: string;
-        desciption: string;
+        description: string;
         image?: string;
         options: {
             id: number;
@@ -57,7 +58,16 @@ export class quizmanger {
             console.log("quiz not found");
 
         }
-        quiz?.adduser(name);
+        return quiz?.adduser(name);
+
+    }
+    public Submit(quizid: string, userId: string, problemid: number, submission: 0 | 1 | 2 | 3
+    ) {
+        const quiz = this.getquiz(quizid);
+        if (!quiz) {
+            return;
+        }
+        quiz.submit(userId, problemid, submission);
 
     }
 

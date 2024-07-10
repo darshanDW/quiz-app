@@ -38,10 +38,19 @@ export class Adminmanager {
             socket.emit("init", {
                 userId,
                 state: 'question'
+
             });
             socket.join(data.quizid);
+            socket.on('submit', (data) => {
+                if (data.submission != 0 && data.submission != 1 && data.submission != 2 && data.submission != 3) {
+                    console.error("issue while getting input " + data.submission)
+                    return;
+                }
+                this.quizmanage.Submit(data.quizid, data.userid, data.problemid, data.submission);
+            })
 
-        })
+        });
+
     }
 
 }

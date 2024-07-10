@@ -7,6 +7,7 @@ export const Control = ({ socket, quizid }: { socket: Socket, quizid: string }) 
     const start = () => {
         socket.emit('start', { quizid });
         setstart(true);
+        console.log("start click");
     }
     if (!s) {
         return <div>

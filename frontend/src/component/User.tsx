@@ -63,11 +63,7 @@ interface UserLoggedinProps {
 
 export const UserLoggedin: React.FC<UserLoggedinProps> = ({ code, name }): any => {
     const quizid = code;
-    const [S, setS] = useState<Socket | null>(null);
-    const [currentState, setCurrentState] = useState("not_started");
-    const [currentQuestion, setCurrentQuestion] = useState<data>(null);
-    const [userId, setUserId] = useState("");
-    type data = {
+    interface data {
         title: string;
         description: string;
         image?: string;
@@ -76,7 +72,21 @@ export const UserLoggedin: React.FC<UserLoggedinProps> = ({ code, name }): any =
             id: number;
             title: string
         }[]
-    } | null;
+    };
+    const [S, setS] = useState<Socket | null>(null);
+    const [currentState, setCurrentState] = useState("not_started");
+    const [currentQuestion, setCurrentQuestion] = useState<data>({
+        title: "",
+        description: '',
+        image: "",
+        problemid: 0,
+        options: [{
+            id: 0,
+            title: '',
+        }]
+    });
+    const [userId, setUserId] = useState("");
+
     useEffect(() => {
 
 
@@ -89,19 +99,19 @@ export const UserLoggedin: React.FC<UserLoggedinProps> = ({ code, name }): any =
         socket.on("init", ({ userId, state }) => {
             setUserId(userId);
 
-
-
-            if (state == 'question') {
-                setCurrentQuestion(state.problem);
-            }
+            console.log(1);
+            /*
+                        if (state == 'question') {
+                            setCurrentQuestion(state.problem);
+                        }*/
 
             setCurrentState(state.type);
         });
 
-        socket.on("problem", (data: data) => {
+        socket.on("problem", (d) => {
             setCurrentState("question");
-            setCurrentQuestion(data);
-            console.log(data);
+            setCurrentQuestion(d);
+            console.log(d);
         })
 
     }, []);
@@ -111,6 +121,7 @@ export const UserLoggedin: React.FC<UserLoggedinProps> = ({ code, name }): any =
         </div>
     }
     if (currentState === "question") {
+        console.log(currentQuestion);
         return <Quizp socket={S} quizid={quizid} userid={userId} data={currentQuestion} />
     }
 }
