@@ -70,6 +70,28 @@ export class quizmanger {
         quiz.submit(userId, problemid, submission);
 
     }
+    public getCurrentstate(quizid: string) {
+        const quiz = this.getquiz(quizid);
+        if (!quiz) {
+            return;
+        }
+        quiz.getcurrentState();
+
+    };
+    public Next(quizid: string) {
+        const quiz = this.getquiz(quizid);
+        if (!quiz) {
+            return;
+        }
+        quiz.next();
+    };
+    public End(quizid: string) {
+        const quiz = this.getquiz(quizid);
+        if (!quiz) {
+            return;
+        }
+        quiz.end();
+    }
 
 
 

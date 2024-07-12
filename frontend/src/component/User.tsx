@@ -2,6 +2,8 @@
 import { useEffect, useState } from "react";
 import { Socket, io } from "socket.io-client";
 import { Quizp } from "./Quiz";
+import { Leaderboard } from "./Leaderboard";
+import { Result } from "./Result";
 const User = () => {
 
     const [name, setName] = useState("");
@@ -86,7 +88,7 @@ export const UserLoggedin: React.FC<UserLoggedinProps> = ({ code, name }): any =
         }]
     });
     const [userId, setUserId] = useState("");
-
+    const [leaderboard, setleaderboard]: any = useState([{ points: 0, name: "", userid: "" }]);
     useEffect(() => {
 
 
@@ -99,11 +101,13 @@ export const UserLoggedin: React.FC<UserLoggedinProps> = ({ code, name }): any =
         socket.on("init", ({ userId, state }) => {
             setUserId(userId);
 
-            console.log(1);
-            /*
-                        if (state == 'question') {
-                            setCurrentQuestion(state.problem);
-                        }*/
+            if (state.leaderboard) {
+                setleaderboard(state.leaderboard)
+            }
+
+            if (state.problem) {
+                setCurrentQuestion(state.problem);
+            }
 
             setCurrentState(state.type);
         });
@@ -112,7 +116,18 @@ export const UserLoggedin: React.FC<UserLoggedinProps> = ({ code, name }): any =
             setCurrentState("question");
             setCurrentQuestion(d);
             console.log(d);
-        })
+
+        });
+        socket.on("leaderboard", (d) => {
+            setCurrentState("leaderboard");
+            setleaderboard(d.leaderboard);
+            console.log(d.leaderboard);
+
+        });
+        socket.on("quiz_end", () => {
+            setCurrentState("quiz_end");
+        });
+
 
     }, []);
     if (currentState === "not_started") {
@@ -122,6 +137,13 @@ export const UserLoggedin: React.FC<UserLoggedinProps> = ({ code, name }): any =
     }
     if (currentState === "question") {
         console.log(currentQuestion);
-        return <Quizp socket={S} quizid={quizid} userid={userId} data={currentQuestion} />
+        return <Quizp socket={S} quizid={quizid} userid={userId} data={currentQuestion} counter={15} />
+    };
+    if (currentState === "leaderboard") {
+        console.log(leaderboard);
+        return <Leaderboard leaderboard={leaderboard} />
+    };
+    if (currentState === "quiz_end") {
+        return <Result winner={leaderboard[0]} />
     }
 }

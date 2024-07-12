@@ -29,6 +29,14 @@ export class Adminmanager {
             });
             socket.on('start', (data) => {
                 this.quizmanage.Start(data.quizid);
+            });
+
+            socket.on('next', (data) => {
+                this.quizmanage.Next(data.quizid);
+                console.log("next");
+            });
+            socket.on('end', (data) => {
+                this.quizmanage.End(data.quizid);
             })
         });
         socket.on('join', (data) => {
@@ -37,8 +45,7 @@ export class Adminmanager {
             const userId = this.quizmanage.addUser(data.quizid, data.name);
             socket.emit("init", {
                 userId,
-                state: 'question'
-
+                state: this.quizmanage.getCurrentstate(data.quizid)
             });
             socket.join(data.quizid);
             socket.on('submit', (data) => {

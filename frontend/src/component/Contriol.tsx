@@ -13,5 +13,25 @@ export const Control = ({ socket, quizid }: { socket: Socket, quizid: string }) 
         return <div>
             <button onClick={start} >start quiz</button>
         </div>
+    };
+    if (s) {
+        return <div>
+
+            <button onClick={() => {
+                socket.emit('next', {
+                    quizid
+                });
+                console.log('next');
+            }}>Next problem</button>
+            <button onClick={() => {
+                socket.emit('end', {
+                    quizid
+                });
+                console.log('end');
+            }}>end </button>
+        </div>
+
+
     }
+
 }

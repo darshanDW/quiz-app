@@ -1,6 +1,6 @@
 import { IoManager } from "./index";
 export type AllowedSubmissions = 0 | 1 | 2 | 3;
-const PROBLEM_TIME_S = 7;
+const PROBLEM_TIME_S = 15;
 interface user {
     name: string;
     userid: string;
@@ -119,8 +119,10 @@ export class quiz {
             optionselected: answer
         });
         console.log("submited");
-        user.points += (1000 - (500 * (new Date().getTime() - problem.startime) / (PROBLEM_TIME_S * 1000)));
-
+        if (problem.submission.find(x => x.iscorrect === true)) {
+            console.log(1);
+            user.points += (1000 - (500 * (new Date().getTime() - problem.startime) / (PROBLEM_TIME_S * 1000)));
+        }
     };
     public getLeaderboard() {
         return this.users.sort((a, b) => a.points < b.points ? 1 : -1).slice(0, 20);;
@@ -132,9 +134,56 @@ export class quiz {
         IoManager.getIo().to(this.quizid).emit("leaderboard", {
             leaderboard
         })
+    };
+    public next() {
+        this.activeProblem++;
+        const problem = this.problems[this.activeProblem];
+        if (problem) {
+            this.setactiveproblem(problem);
+        }
+        else {
+            this.activeProblem--;
+            // send final results here
+            // IoManager.getIo().emit("QUIZ_END", {
+            //     problem
+            // })
+        }
     }
 
 
+    getcurrentState() {
+        if (this.currentState === "not_started") {
+            return {
+                type: "not_started"
+            }
+        }
+        if (this.currentState === "ended") {
+            return {
+                type: "ended",
+                leaderboard: this.getLeaderboard()
+            }
+        }
+        if (this.currentState === "leaderboard") {
+            return {
+                type: "leaderboard",
+                leaderboard: this.getLeaderboard()
+            }
+        }
+        if (this.currentState === "question") {
+            const problem = this.problems[this.activeProblem];
+            return {
+                type: "question",
+                problem
+            }
+        }
+    };
+    public end() {
+        IoManager.getIo().to(this.quizid).emit("quiz_end", {
+
+
+        });
+        this.currentState = 'ended';
+    }
 
 
 }

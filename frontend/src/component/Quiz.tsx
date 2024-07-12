@@ -15,14 +15,19 @@ interface QuizpProps {
             title: string;
         }[];
     };
+    counter: number
 }
 
-export const Quizp: React.FC<QuizpProps> = ({ socket, quizid, userid, data }) => {
+export const Quizp: React.FC<QuizpProps> = ({ socket, quizid, userid, data, counter }) => {
     const [submit, setsubmit] = useState(false);
     const [answer, setAnswer] = useState<number | undefined>(undefined);
-
+    const [timer, settimer] = useState(counter);
+    setInterval(() => {
+        settimer(timer - 1);
+    }, 1000);
     return (
         <div>
+            <h2>timer is:{timer}</h2>
             <h1>{data.problemid} {data.title}</h1>
             <p>{data.description}</p>
             {data.image && <img src={data.image} alt="Quiz" />}
