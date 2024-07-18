@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Socket } from "socket.io-client";
+import "../App.css"; // Import the CSS file
 
 export const Control = ({ socket, quizid }: { socket: Socket, quizid: string }) => {
     const [s, setstart] = useState(false);
@@ -9,29 +10,25 @@ export const Control = ({ socket, quizid }: { socket: Socket, quizid: string }) 
         setstart(true);
         console.log("start click");
     }
+
     if (!s) {
-        return <div>
-            <button onClick={start} >start quiz</button>
-        </div>
-    };
-    if (s) {
-        return <div>
-
-            <button onClick={() => {
-                socket.emit('next', {
-                    quizid
-                });
-                console.log('next');
-            }}>Next problem</button>
-            <button onClick={() => {
-                socket.emit('end', {
-                    quizid
-                });
-                console.log('end');
-            }}>end </button>
-        </div>
-
-
+        return (
+            <div className="control-container">
+                <button className="control-button" onClick={start}>Start Quiz</button>
+            </div>
+        );
     }
 
-}
+    return (
+        <div className="control-container">
+            <button className="control-button" onClick={() => {
+                socket.emit('next', { quizid });
+                console.log('next');
+            }}>Next Problem</button>
+            <button className="control-button" onClick={() => {
+                socket.emit('end', { quizid });
+                console.log('end');
+            }}>End Quiz</button>
+        </div>
+    );
+};

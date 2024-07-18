@@ -1,4 +1,6 @@
 import { useState } from "react";
+import "../App.css"; // Import the CSS file
+
 const CreateP = ({ socket, quiz }: { socket: any; quiz: string; }) => {
     const [title, setTitle] = useState("");
     const [description, setDescription] = useState("");
@@ -22,7 +24,6 @@ const CreateP = ({ socket, quiz }: { socket: any; quiz: string; }) => {
         });
 
         // Reset the form fields
-        setTitle("");
         if (title && description && options) {
             setTitle("");
             setDescription("");
@@ -35,40 +36,50 @@ const CreateP = ({ socket, quiz }: { socket: any; quiz: string; }) => {
             ]);
         }
     };
+
     return (
-        <div>
-            { }
-            Create problem
-            <br />
-            Title = <input type="text" value={title} onChange={(e) => setTitle(e.target.value)} />
-            <br /><br />
-            Description - <input type="text" value={description} onChange={(e) => setDescription(e.target.value)} />
-            <br />
-
+        <div className="create-problem-container">
+            <div className="create-problem-title">Create problem</div>
+            <input
+                className="create-problem-input"
+                type="text"
+                placeholder="Title"
+                value={title}
+                onChange={(e) => setTitle(e.target.value)}
+            />
+            <input
+                className="create-problem-input"
+                type="text"
+                placeholder="Description"
+                value={description}
+                onChange={(e) => setDescription(e.target.value)}
+            />
             {options.map(option => (
-                <div key={option.id}>
-                    <input type="radio" checked={option.id === answer} onChange={() => setAnswer(option.id)} />
+                <div key={option.id} className="create-problem-option">
+                    <input
+                        type="radio"
+                        checked={option.id === answer}
+                        onChange={() => setAnswer(option.id)}
+                    />
                     Option {option.id}
-                    <input type="text" value={option.title} onChange={(e) => {
-                        setOptions(options.map(x => {
-                            if (x.id === option.id) {
-                                return { ...x, title: e.target.value };
-                            }
-                            return x;
-                        }));
-                    }} />
-                    <br />
-                    <br />
+                    <input
+                        type="text"
+                        placeholder={`Option ${option.id} `}
+                        value={option.title}
+                        onChange={(e) => {
+                            setOptions(options.map(x => {
+                                if (x.id === option.id) {
+                                    return { ...x, title: e.target.value };
+                                }
+                                return x;
+                            }));
+                        }}
+                    />
                 </div>
-            ))
-
-
-            };
-            <br />
-
-            <button onClick={handleAddProblem}>Add problem</button>
-
-
+            ))}
+            <button className="create-problem-button" onClick={handleAddProblem}>
+                Add problem
+            </button>
         </div>
     );
 };
