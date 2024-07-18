@@ -20,6 +20,7 @@ interface QuizpProps {
 
 export const Quizp: React.FC<QuizpProps> = ({ socket, quizid, userid, data, counter }) => {
     const [submit, setsubmit] = useState(false);
+
     const [answer, setAnswer] = useState<number | undefined>(undefined);
     const [timer, settimer] = useState(counter);
     setInterval(() => {
@@ -50,7 +51,7 @@ export const Quizp: React.FC<QuizpProps> = ({ socket, quizid, userid, data, coun
             <button
                 onClick={() => {
                     console.log("submit", answer);
-                    setsubmit(true);
+                    if (submit) { setsubmit(true); }
                     socket?.emit('submit', {
                         quizid, userid, problemid: data.problemid,
                         submission: Number(answer),
