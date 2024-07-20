@@ -92,7 +92,7 @@ export const UserLoggedin: React.FC<UserLoggedinProps> = ({ code, name }): any =
     useEffect(() => {
 
 
-        const socket: Socket = io("http://localhost:3000/user");
+        const socket: Socket = io("http://localhost:3000");
         setS(socket);
         socket.emit('join', { quizid, name });
 
