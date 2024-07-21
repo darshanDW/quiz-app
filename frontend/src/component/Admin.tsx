@@ -9,7 +9,7 @@ function Admin() {
     const [S, setS] = useState<null | any>(null);
 
     useEffect(() => {
-        const socket: Socket = io("http://localhost:3000");
+        const socket: Socket = io("https://quiz-app-6-ldua.onrender.com");
         console.log(socket);
         setS(socket);
         console.log(S);
