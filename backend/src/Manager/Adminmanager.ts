@@ -39,6 +39,7 @@ export class Adminmanager {
                 this.quizmanage.End(data.quizid);
             })
         });
+        console.log(1);
         socket.on('join', (data): any => {
             console.log("user join")
             if (!data) { return; }
