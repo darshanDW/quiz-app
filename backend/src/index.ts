@@ -2,6 +2,8 @@ import { createServer } from 'http';
 import { Server, Socket } from 'socket.io';
 import { Adminmanager } from './Manager/Adminmanager';
 const server = createServer();
+require('dotenv').config();
+const pORT = process.env.PORT;
 
 export class IoManager {
     private static io: Server;
@@ -33,6 +35,7 @@ io.on('connection', (client: Socket) => {
     });
 });
 
-server.listen(3000, () => {
-    console.log("Server is listening on port 3000");
+server.listen(pORT, () => {
+
+    console.log("Server is listening on port ");
 });

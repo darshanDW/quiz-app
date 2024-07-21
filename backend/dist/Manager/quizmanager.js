@@ -8,8 +8,7 @@ class quizmanger {
         this.quizes = [];
     }
     getquiz(id) {
-        var _a;
-        return (_a = this.quizes.find(x => x.quizid == id)) !== null && _a !== void 0 ? _a : null;
+        return this.quizes.find(x => x.quizid == id) ?? null;
     }
     Start(quizid) {
         const quiz = this.getquiz(quizid);
@@ -32,8 +31,10 @@ class quizmanger {
         if (!quiz) {
             console.log("quiz not found");
         }
-        quiz === null || quiz === void 0 ? void 0 : quiz.addproblem(Object.assign(Object.assign({}, problem), { problemid: globalProblemId++, startime: new Date().getTime(), submission: [] }));
-        console.log(quiz === null || quiz === void 0 ? void 0 : quiz.problems);
+        quiz?.addproblem({
+            ...problem, problemid: globalProblemId++, startime: new Date().getTime(), submission: [],
+        });
+        console.log(quiz?.problems);
     }
     ;
     addUser(quizid, name) {
@@ -41,7 +42,7 @@ class quizmanger {
         if (!quiz) {
             console.log("quiz not found");
         }
-        return quiz === null || quiz === void 0 ? void 0 : quiz.adduser(name);
+        return quiz?.adduser(name);
     }
     Submit(quizid, userId, problemid, submission) {
         const quiz = this.getquiz(quizid);

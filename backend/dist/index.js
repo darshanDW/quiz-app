@@ -5,6 +5,8 @@ const http_1 = require("http");
 const socket_io_1 = require("socket.io");
 const Adminmanager_1 = require("./Manager/Adminmanager");
 const server = (0, http_1.createServer)();
+require('dotenv').config();
+const pORT = process.env.PORT;
 class IoManager {
     // singletons
     static getIo() {
@@ -31,6 +33,6 @@ io.on('connection', (client) => {
         console.log("Client disconnected");
     });
 });
-server.listen(3000, () => {
-    console.log("Server is listening on port 3000");
+server.listen(pORT, () => {
+    console.log("Server is listening on port ");
 });
