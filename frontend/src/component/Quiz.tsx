@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Socket } from "socket.io-client";
+import "../App.css";
 
 interface QuizpProps {
     socket: Socket | null;

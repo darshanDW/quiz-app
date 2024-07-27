@@ -1,38 +1,41 @@
 :root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  --font-family: 'Inter', system-ui, Avenir, Helvetica, Arial, sans-serif;
+  --color-light: rgba(255, 255, 255, 0.87);
+  --color-dark: #242424;
+  --background-dark: #1a1a1a;
+  --primary-color: #646cff;
+  --primary-color-hover: #535bf2;
+  --border-radius: 15px;
+  --shadow-light: 0 5px 10px rgba(0, 0, 0, 0.1);
+  --shadow-dark: 0 10px 20px rgba(0, 0, 0, 0.15);
+
+  font-family: var(--font-family);
   line-height: 1.5;
   font-weight: 400;
-
   color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
-
+  color: var(--color-light);
+  background-color: var(--color-dark);
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-a:hover {
-  color: #535bf2;
-}
-
-body {
-  margin: 0;
-  display: flex;
-  place-items: center;
-  min-width: 320px;
-  min-height: 100vh;
-}
 
 h1 {
   font-size: 3.2em;
   line-height: 1.1;
+  color: #213547;
+}
+
+a {
+  font-weight: 500;
+  color: var(--primary-color);
+  text-decoration: inherit;
+}
+
+a:hover {
+  color: var(--primary-color-hover);
 }
 
 button {
@@ -42,13 +45,15 @@ button {
   font-size: 1em;
   font-weight: 500;
   font-family: inherit;
-  background-color: #1a1a1a;
+  background-color: var(--background-dark);
   cursor: pointer;
   transition: border-color 0.25s;
 }
+
 button:hover {
-  border-color: #646cff;
+  border-color: var(--primary-color);
 }
+
 button:focus,
 button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
@@ -59,10 +64,93 @@ button:focus-visible {
     color: #213547;
     background-color: #ffffff;
   }
+
   a:hover {
     color: #747bff;
   }
+
   button {
     background-color: #f9f9f9;
+  }
+}
+
+/* Leaderboard Styles */
+.leaderboard {
+  width: 100%;
+  max-width: 600px;
+  padding: 20px;
+  background: var(--background-dark);
+  color: var(--color-light);
+  box-shadow: var(--shadow-dark);
+  border-radius: var(--border-radius);
+  text-align: center;
+  animation: fadeIn 1s ease-in-out;
+}
+
+.leaderboard h1 {
+  font-size: 2.5rem;
+  margin-bottom: 20px;
+  color: var(--color-light);
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.leaderboard ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.leaderboard-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px;
+  margin-bottom: 15px;
+  background: #333;
+  border-radius: 10px;
+  box-shadow: var(--shadow-light);
+  transition: transform 0.3s ease-in-out, background 0.3s ease-in-out;
+  animation: slideIn 0.5s ease-in-out;
+}
+
+.leaderboard-item:hover {
+  transform: translateY(-5px);
+  background: #444;
+}
+
+.player-rank {
+  font-weight: bold;
+  font-size: 1.2rem;
+  color: var(--primary-color);
+}
+
+.player-name {
+  font-size: 1rem;
+  color: var(--color-light);
+}
+
+.player-score {
+  font-size: 1rem;
+  color: var(--primary-color);
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateX(-100%);
+  }
+
+  to {
+    transform: translateX(0);
   }
 }

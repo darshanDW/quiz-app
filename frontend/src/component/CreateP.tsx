@@ -1,6 +1,6 @@
 import { useState } from "react";
 import "../App.css"; // Import the CSS file
-
+import "../index.css"
 const CreateP = ({ socket, quiz }: { socket: any; quiz: string; }) => {
     const [title, setTitle] = useState("");
     const [description, setDescription] = useState("");

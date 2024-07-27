@@ -1,0 +1,77 @@
+/* Container for the Quizp component */
+.quizp-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    max-width: 600px;
+    margin: 20px auto;
+    background: #f9f9f9;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Timer styles */
+.quizp-timer {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #ff5722;
+    margin-bottom: 20px;
+}
+
+/* Title styles */
+.quizp-title {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+/* Description styles */
+.quizp-description {
+    font-size: 1rem;
+    color: #666;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+/* Image styles */
+.quizp-image {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+    margin-bottom: 20px;
+}
+
+/* Button styles */
+.quizp-button {
+    background-color: #ffffff;
+    border: 2px solid #007bff;
+    border-radius: 8px;
+    padding: 12px 24px;
+    font-size: 1rem;
+    font-weight: 500;
+    color: #007bff;
+    cursor: pointer;
+    margin-bottom: 10px;
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+.quizp-button:hover {
+    background-color: #007bff;
+    color: #ffffff;
+    border-color: #007bff;
+}
+
+/* Read-only input styles */
+.quizp-input {
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 10px;
+    font-size: 1rem;
+    color: #333;
+    margin: 5px 0;
+    width: 100%;
+    box-sizing: border-box;
+}

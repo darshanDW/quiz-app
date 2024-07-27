@@ -3,6 +3,8 @@ import { useEffect, useState } from "react";
 import { Socket, io } from "socket.io-client";
 import { Quizp } from "./Quiz";
 import { Leaderboard } from "./Leaderboard";
+import "../App.css";
+
 import { Result } from "./Result";
 const User = () => {
 
@@ -94,9 +96,9 @@ export const UserLoggedin: React.FC<UserLoggedinProps> = ({ code, name }): any =
 
         const socket: Socket = io("https://quiz-app-6-ldua.onrender.com");
         setS(socket);
-        socket.emit('join', { quizid, name });
 
-        console.log(quizid, name);
+        socket.emit('join', { quizid, name });
+        if (socket) { console.log(quizid, name); }
 
         socket.on("init", ({ userId, state }) => {
             setUserId(userId);
