@@ -1,0 +1,102 @@
+/* Container styling */
+.user-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #40adbb3e;
+    /* Softer green background */
+    margin: 10% auto;
+    /* Center container vertically and horizontally */
+    padding: 20px;
+    /* Internal padding */
+    width: 50%;
+    /* Container width */
+    border-radius: 15px;
+    /* Rounded corners */
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+    /* Soft shadow for depth */
+}
+
+/* Heading styling */
+.Heading h1 {
+    font-size: 1.75rem;
+    /* Adjust the heading size */
+    font-weight: 600;
+    /* Make heading semi-bold */
+    color: rgb(80, 80, 80);
+    /* Darker text color */
+    margin-bottom: 0.5rem;
+    /* Space between heading and paragraph */
+}
+
+.Heading p {
+    color: rgb(120, 120, 120);
+    /* Lighter gray for subtext */
+    font-size: 1rem;
+    /* Normal paragraph size */
+}
+
+/* Input field styling */
+.input-feild {
+    text-align: center;
+    /* Center text inside the input */
+    width: 16rem;
+    /* Set a fixed width for the input */
+    padding: 8px;
+    /* Add padding inside the input */
+    /* Purple border */
+    /* Rounded corners */
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+    /* Subtle shadow */
+    font-size: 1rem;
+    /* Input text size */
+    transition: border-color 0.3s ease;
+    /* Smooth border transition on focus */
+    margin-bottom: 0.75rem;
+    background-color: rgba(0, 0, 0, 0.255);
+    /* Space between input fields */
+}
+
+/* Focus effect for input fields */
+.input-feild:focus {
+    outline: none;
+    /* Remove default browser outline */
+    border-color: rgb(8, 1, 17);
+    /* Darker purple border on focus */
+}
+
+/* Button styling */
+.Join-button {
+    background-color: salmon;
+    /* Purple background */
+    color: white;
+    /* White text color */
+    width: 16rem;
+    /* Button width */
+    padding: 10px 0;
+    /* Vertical padding */
+    border-radius: 0.5rem;
+    /* Rounded corners */
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    /* Button shadow */
+    cursor: pointer;
+    /* Pointer cursor on hover */
+    transition: background-color 0.3s ease;
+    /* Smooth transition for hover */
+    font-size: 1rem;
+    margin-top: 30px;
+    /* Button text size */
+}
+
+/* Button hover and focus effects */
+.Join-button:hover {
+    background-color: rgb(195, 34, 5)
+        /* Darker purple on hover */
+}
+
+.Join-button:focus {
+    outline: none;
+    /* Remove default focus outline */
+    box-shadow: 0px 0px 0px 4px rgba(16, 1, 34, 0.5);
+    /* Focus ring */
+}

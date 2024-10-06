@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { io, Socket } from "socket.io-client";
 import CreateP from "./CreateP";
 import { Control } from "./Contriol";
-import "../App.css";
+import './Admin.css';
 function Admin() {
     const [quiz, setQuiz] = useState("");
     const [a, seta] = useState("");
@@ -29,7 +29,8 @@ function Admin() {
 
     if (!quiz) {
         return (
-            <div className="admin-container">
+
+            <div className="a">
                 <input
                     className="admin-input-box"
                     type="text"
@@ -47,7 +48,7 @@ function Admin() {
                 >
                     Create quiz
                 </button>
-            </div>
+            </div> 
         );
     }
 

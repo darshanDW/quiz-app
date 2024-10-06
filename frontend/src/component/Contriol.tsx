@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Socket } from "socket.io-client";
-import "../App.css"; // Import the CSS file
-
+import "./CreateP.css"
+import "./Contriol.css"
 export const Control = ({ socket, quizid }: { socket: Socket, quizid: string }) => {
     const [s, setstart] = useState(false);
 
@@ -16,7 +16,7 @@ export const Control = ({ socket, quizid }: { socket: Socket, quizid: string }) 
             <div className="control-container">
                 <button className="control-button" onClick={start}>Start Quiz</button>
             </div>
-        );
+         );
     }
 
     return (

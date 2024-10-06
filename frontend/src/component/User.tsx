@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { Socket, io } from "socket.io-client";
 import { Quizp } from "./Quiz";
 import { Leaderboard } from "./Leaderboard";
-import "../App.css";
+import "./User.css"
 
 import { Result } from "./Result";
 const User = () => {
@@ -12,19 +12,19 @@ const User = () => {
     const [submitted, setSubmitted] = useState(false);
     const [code, setCode] = useState("");
     if (!submitted) {
-        return <div>
-            <div className="bg-gray-100 flex items-center justify-center h-screen">
+        return <div className="user-container">
+            <div >
                 <div className="text-center">
-                    <div className="mb-8">
-                        <h1 className="text-2xl font-semibold mb-2 text-slate-600">
+                    <div className="Heading">
+                        <h1 className="">
                             Enter the code to join
-                        </h1>
-                        <p className="text-gray-600">It’s on the screen in front of you</p>
+
+                            <p >It’s on the screen in front of you</p> </h1>
                     </div>
                     <div className="mb-8">
                         <input
-                            className="text-center w-64 p-2 border-2 border-purple-600 rounded-lg shadow-sm focus:outline-none focus:border-purple-800"
-                            placeholder="1234 5678"
+                            className="input-feild"
+                            placeholder="xyz"
                             style={{ fontSize: "1rem" }}
                             type="text"
                             onChange={(e) => {
@@ -33,7 +33,7 @@ const User = () => {
                         />
                         <br /> <br />
                         <input
-                            className="text-center w-64 p-2 border-2 border-purple-600 rounded-lg shadow-sm focus:outline-none focus:border-purple-800"
+                            className="input-feild"
                             placeholder="Your name"
                             style={{ fontSize: "1rem" }}
                             type="text"
@@ -43,7 +43,7 @@ const User = () => {
                         />
                     </div>
                     <button
-                        className="bg-purple-600 text-white w-64 py-2 rounded-lg shadow-md hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-800 focus:ring-opacity-50"
+                        className="Join-button"
                         style={{ fontSize: "1rem" }}
                         onClick={() => {
                             setSubmitted(true);

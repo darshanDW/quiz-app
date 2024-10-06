@@ -1,61 +1,35 @@
-/* Global styles to center content */
-html,
-body {
-    height: 100%;
-    margin: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background: linear-gradient(135deg, #fffcf9 0%, #f5f5f5 100%);
-    font-family: 'Arial', sans-serif;
-}
-
-/* Result Container */
 .result {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    background: #ffffff;
-    padding: 30px;
-    border-radius: 12px;
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
-    text-align: center;
+    background-color: #3e3e3e;
+    /* Dark gray background for the result card */
+    color: #f9f9f9;
+    /* Light text color */
+    border-radius: 15px;
+    padding: 40px;
     width: 100%;
-    max-width: 400px;
-    margin: 20px;
-    transition: box-shadow 0.3s ease, transform 0.3s ease;
+    max-width: 500px;
+    text-align: center;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
 }
 
-/* Hover Effect */
-.result:hover {
-    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
-    transform: translateY(-5px);
-}
-
-/* Winner Title */
 .result-title {
-    font-size: 2rem;
-    font-weight: bold;
-    color: #333;
-    margin-bottom: 15px;
+    font-size: 32px;
+    margin-bottom: 20px;
+    color: #4caf50;
+    /* Bright green for the title */
+    text-transform: uppercase;
+    letter-spacing: 1px;
 }
 
-/* Winner Info */
 .result-info {
-    font-size: 1.2rem;
-    color: #444;
-    margin: 0;
+    font-size: 20px;
+    margin: 10px 0;
+    color: #e0e0e0;
+    /* Light gray for info text */
 }
 
-/* Highlighted Text */
 .result-highlight {
-    font-size: 1.5rem;
     font-weight: bold;
-    color: #007bff;
-}
-
-/* Additional Styles */
-.result p {
-    margin: 0;
+    color: #ffb300;
+    /* Bright yellow for highlighting winner name and points */
+    font-size: 22px;
 }

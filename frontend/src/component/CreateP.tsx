@@ -1,6 +1,5 @@
 import { useState } from "react";
-import "../App.css"; // Import the CSS file
-import "../index.css"
+import './CreateP.css';
 const CreateP = ({ socket, quiz }: { socket: any; quiz: string; }) => {
     const [title, setTitle] = useState("");
     const [description, setDescription] = useState("");
@@ -48,21 +47,21 @@ const CreateP = ({ socket, quiz }: { socket: any; quiz: string; }) => {
                 onChange={(e) => setTitle(e.target.value)}
             />
             <input
-                className="create-problem-input"
+                className="create-problem-description"
                 type="text"
                 placeholder="Description"
                 value={description}
                 onChange={(e) => setDescription(e.target.value)}
             />
-            {options.map(option => (
+            <div className="options"> {options.map(option => (
                 <div key={option.id} className="create-problem-option">
                     <input
                         type="radio"
                         checked={option.id === answer}
                         onChange={() => setAnswer(option.id)}
                     />
-                    Option {option.id}
-                    <input
+                    Option {option.id + 1}
+                    <input className="option-input"
                         type="text"
                         placeholder={`Option ${option.id} `}
                         value={option.title}
@@ -76,11 +75,12 @@ const CreateP = ({ socket, quiz }: { socket: any; quiz: string; }) => {
                         }}
                     />
                 </div>
-            ))}
+            ))}</div>
             <button className="create-problem-button" onClick={handleAddProblem}>
                 Add problem
             </button>
         </div>
+
     );
 };
 

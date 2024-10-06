@@ -1,33 +1,40 @@
-html,
+/* Center the leaderboard horizontally and vertically */
 body {
-    height: 100%;
-    margin: 0;
-    display: ruby-base-container;
+    display: flex;
     justify-content: center;
     align-items: center;
-    background: #eaeaea;
-    /* Optional: to differentiate from the leaderboard background */
+    height: 100vh;
+    margin: 0;
+    /* Dark background for the entire page */
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 .leaderboard {
+    display: flex;
+    flex-direction: column;
+    background-color: #1e1e1e;
+    /* Darker gray for the leaderboard background */
+    border-radius: 15px;
+    padding: 30px;
     width: 100%;
     max-width: 600px;
-    padding: 20px;
-    background: #e8e2e2;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    border-radius: 10px;
     text-align: center;
-    animation: fadeIn 1s ease-in-out;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+    color: #f5f5f5;
+    /* Light text color for contrast */
 }
 
 .leaderboard h1 {
-    font-size: 2rem;
+    font-size: 26px;
     margin-bottom: 20px;
-    color: #333;
+    color: #f5f5f5;
+    /* Light color for heading */
+    text-transform: uppercase;
+    letter-spacing: 2px;
 }
 
 .leaderboard ul {
-    list-style: none;
+    list-style-type: none;
     padding: 0;
     margin: 0;
 }
@@ -35,54 +42,35 @@ body {
 .leaderboard-item {
     display: flex;
     justify-content: space-between;
-    align-items: center;
-    padding: 10px;
-    margin-bottom: 10px;
-    background: #fff;
-    border-radius: 5px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease-in-out, background 0.3s ease-in-out;
-    animation: slideIn 0.5s ease-in-out;
+    padding: 15px;
+    background-color: #333333;
+    /* Dark gray for leaderboard items */
+    border-radius: 10px;
+    margin-bottom: 12px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
-.leaderboard-item:hover {
-    transform: translateY(-5px);
-    background: #f0f0f0;
-}
 
 .player-rank {
     font-weight: bold;
-    font-size: 1.2rem;
-    color: #333;
+    font-size: 20px;
+    color: #ffb300;
+    /* Bright yellow for rank */
 }
 
 .player-name {
-    font-size: 1rem;
-    color: #555;
+    font-size: 18px;
+    flex-grow: 1;
+    text-align: left;
+    margin-left: 15px;
+    color: #e0e0e0;
+    /* Light gray for player name */
 }
 
 .player-score {
-    font-size: 1rem;
-    color: #777;
-}
-
-/* Animations */
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-    }
-
-    to {
-        opacity: 1;
-    }
-}
-
-@keyframes slideIn {
-    from {
-        transform: translateX(-100%);
-    }
-
-    to {
-        transform: translateX(0);
-    }
+    font-size: 20px;
+    font-weight: bold;
+    color: #76ff03;
+    /* Bright green for the score */
 }

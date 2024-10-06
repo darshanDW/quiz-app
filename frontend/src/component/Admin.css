@@ -1,0 +1,27 @@
+.a {
+    display: flex;
+    flex-direction: column;
+    background-color: #40adbb3e;
+    width: 100%;
+    max-width: 400px;
+    height: auto;
+    padding: 20px;
+    border-radius: 10px;
+    justify-content: center;
+    align-items: center;
+    margin: 200px auto;
+}
+
+
+
+.admin-input-box {
+    background-color: rgba(0, 0, 0, 0.255);
+    margin: 20px;
+    padding: 10px;
+
+}
+
+.admin-button {
+    width: 30%;
+    background-color: salmon;
+}

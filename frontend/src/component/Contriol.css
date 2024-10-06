@@ -1,0 +1,16 @@
+.control-container {
+    display: flex;
+    text-align: center;
+    justify-content: center;
+
+}
+
+.control-button {
+
+    width: auto;
+    height: 15%;
+    background-color: rgba(50, 106, 112, 0.788);
+    border-radius: 10px;
+    margin: 10px;
+    padding: 5px;
+}
